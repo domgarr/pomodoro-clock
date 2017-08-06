@@ -1,0 +1,14 @@
+
+ body, html, .container {
+         height: 100%;
+    }
+
+.content-cell  {
+	height: 40%;
+	display: block;
+}
+
+#header {
+	height: 20%;
+	display: block;
+}
