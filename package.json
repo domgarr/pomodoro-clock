@@ -1,0 +1,29 @@
+{
+  "name": "pomodoro-clock",
+  "version": "1.0.0",
+  "description": "A countdown timer based off the Pomodoro Technique.",
+  "main": "index.html",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/domgarr/pomodoro-clock.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/domgarr/pomodoro-clock/issues"
+  },
+  "homepage": "https://github.com/domgarr/pomodoro-clock#readme",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "jsdom": "^11.2.0",
+    "jsdom-global": "3.0.2",
+    "mocha": "^3.5.0"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "jsdom": "^11.1.0"
+  }
+}

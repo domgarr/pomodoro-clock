@@ -16,8 +16,9 @@
 }
 
 #clock {
-	         font-family: 'Poller One', cursive;
-
+	 font-family: 'Poller One', cursive;
+	 margin-top: 50px;
+	 margin-bottom:50px;
 	
 	font-weight: bold;
 }
@@ -25,6 +26,10 @@
 #clock-and-buttons{
 	margin-top: 10%;
 
+}
+
+.enlarge-button {
+	width: 100px;
 }
 
 @media (min-width: 750px){

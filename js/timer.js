@@ -1,6 +1,5 @@
-
-
-$(document).ready(function(){
+//Can't export objects while wrapped in JQuery ready function.
+//$(document).ready(function(){
 
 //Constructor for the Timer.
 function Timer(countDownLength, $clock, $play, $pause, $stop){
@@ -8,7 +7,7 @@ function Timer(countDownLength, $clock, $play, $pause, $stop){
 	var _countDownLength = countDownLength;
 	//Cache DOM
 	var _$clock = $($clock);
-	var _$play = $( $play);
+	var _$play = $($play);
 	var _$pause = $($pause);
 	var _$stop = $($stop);
 
@@ -22,7 +21,9 @@ var innerTimer = (function(){
 	var HOUR_IN_MS = MINUTE_IN_MS * 60;
 
 	var countDownLengthMS = countDownLength * MINUTE_IN_MS;
+	
 	var intervalID = null;
+	var intervalCounter = 0;
 
 	//bind events
 	_$play.on("click", start);
@@ -30,8 +31,10 @@ var innerTimer = (function(){
 	_$stop.on("click", stop);
 
 	function start(){
-		if(intervalID == null)
+		if(intervalID == null){
 			intervalID = setInterval(countDown,MS);
+			intervalCounter++;
+		}
 	}
 
 	function countDown(){
@@ -41,6 +44,7 @@ var innerTimer = (function(){
 
 	function pause(){
 		clearInterval(intervalID);
+		intervalCounter--;
 		intervalID = null;
 	}
 
@@ -87,14 +91,20 @@ var innerTimer = (function(){
 		render();
 	}
 
-	function getLength(){
-		return 
+	function getRemainingMinutes(){
+		return extractMinutes();
+	}
+
+	function getIntervalCounter(){
+		return intervalCounter;
 	}
 
 	render();
 
 	return {
 		setLength : setLength,
+		getRemainingMinutes : getRemainingMinutes,
+		getIntervalCounter : getIntervalCounter
 	};    
 	
 
@@ -110,14 +120,23 @@ var innerTimer = (function(){
 		return innerTimer.setLength(_countDownLength);
 	}
 
-	this.getLength = function (){
+	this.getLength = function(){
 		return _countDownLength;
 	}
+
+	this.getRemainingMinutes= function(){
+		return innerTimer.getRemainingMinutes;
+	}
+	
 }
-//module.exports = timer;
 
-var timer = new Timer(26, "#clock", "#start", "#pause", "#stop");
-
+var timer = new Timer(25, "#clock", "#start", "#pause", "#stop");
 
 
-});
+	
+
+//});
+
+module.exports = timer;
+	
+
