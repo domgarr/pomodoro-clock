@@ -1,5 +1,5 @@
 //Can't export objects while wrapped in JQuery ready function.
-//$(document).ready(function(){
+$(document).ready(function(){
 
 //Constructor for the Timer.
 function Timer(countDownLength, $clock, $play, $pause, $stop){
@@ -13,12 +13,12 @@ function Timer(countDownLength, $clock, $play, $pause, $stop){
 
 //Revealing Module Pattern
 //A self-calling anonymous function.
-//This way the innerTime methods are private.
+//All methods and variables of innerTime are private except for those returned.
 var innerTimer = (function(){
 	
 	const MS = 1000;
-	var MINUTE_IN_MS = MS * 60;
-	var HOUR_IN_MS = MINUTE_IN_MS * 60;
+	const MINUTE_IN_MS = MS * 60;
+	const HOUR_IN_MS = MINUTE_IN_MS * 60;
 
 	var countDownLengthMS = countDownLength * MINUTE_IN_MS;
 	
@@ -44,7 +44,8 @@ var innerTimer = (function(){
 
 	function pause(){
 		clearInterval(intervalID);
-		intervalCounter--;
+		if(intervalCounter > 0)
+			intervalCounter--;
 		intervalID = null;
 	}
 
@@ -125,18 +126,19 @@ var innerTimer = (function(){
 	}
 
 	this.getRemainingMinutes= function(){
-		return innerTimer.getRemainingMinutes;
+		return innerTimer.getRemainingMinutes();
+	}
+
+	this.getIntervalCounter = function(){
+		return innerTimer.getIntervalCounter();
 	}
 	
 }
 
 var timer = new Timer(25, "#clock", "#start", "#pause", "#stop");
+});
 
-
-	
-
-//});
-
-module.exports = timer;
+//Uncomment below to test. Need to automate this somehow.
+//module.exports = timer;
 	
 
