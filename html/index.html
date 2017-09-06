@@ -15,20 +15,32 @@
 	<link href="https://fonts.googleapis.com/css?family=Antic|Poller+One" rel="stylesheet">
 
 	<link rel = "stylesheet" href="../css/index.css"> 
+
 	<script src = "../js/timer.js"></script>
+	<script src = "../js/motivation.js"> </script>
+
 </head>
 
 
 
-<body class = "container">
-	<div class = "row" id="header" style="background-color: yellow">
-		<h1> Pomodoro Clock </h1>
-	</div>
+	<body class = "container">
+		<div class = "row" id="header" style="background-color: yellow">
+			<h1> Pomodoro Clock </h1>
+		</div>
 
 	
-		<div class = "row content-cell">
+		<div class = "row content-cell" >
 			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<h1> Motivation </h1>
+				<div class="panel panel-danger">
+				  <!--
+				  <div class = "panel-heading">
+				    <h1 id = "motivation-title" class = "text-center"> Motivation </h1>
+				  </div>
+				  -->
+				  <div class="panel-body">
+				  	<img id = "motivation-img" class="img-responsive" src="" alt = "">
+				  </div>
+				</div>	
 			</div>
 			
 			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6" id="clock-and-buttons" >
@@ -49,17 +61,12 @@
 		</div>
 
 		<div class = "row content-cell" style="background-color: #ccffcc;">
-			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6 " style="background-color: green;"> 
+			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6" style="background-color: green;""> 
 				<h1> Pomodoro Counter </h1>
 			</div>
 			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6 " style="background-color: red;">
 				<h1> Task List </h1>
 			</div>
 		</div>
-	
-	
-
-
-
-</body>
+	</body>
 </html>

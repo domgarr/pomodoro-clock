@@ -15,6 +15,7 @@
 	display: block;
 }
 
+
 #clock {
 	 font-family: 'Poller One', cursive;
 	 margin-top: 50px;
@@ -42,4 +43,8 @@
 	#clock{
 		font-size: 6em;
 	}
+
+img {
+	padding: 20px;
+
 }
