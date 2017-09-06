@@ -5,8 +5,7 @@ const {JSDOM} = jsdom;
 const dom = new JSDOM(`<!DOCTYPE html><p id ="clock"></p>
 						<button type="button" id="start">Click Me!</button>
 						<button type="button" id="pause">Click Me!</button>
-						<button type="button" id="stop">Click Me!</button>
-	`);
+						<button type="button" id="stop">Click Me!</button> `);
 
 global.$ = require("jquery")(dom.window);
 global.document = dom.window.document;
