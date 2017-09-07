@@ -24,48 +24,56 @@
 
 
 	<body class = "container">
-		<div class = "row" id="header" style="background-color: yellow">
-			<h1> Pomodoro Clock </h1>
+		<div class = "row" id="header">
+			<div class = "pad-text-left">
+				<h1> POMODORO TIMER </h1>
+				<p>Pomodoro is a interval based productivity technique. It is done by working in increments of 25 minutes and rewarding yourself with a small break. After completing four pomodoros take a longer break! You deserve it!</p>
+	  			<p class = "text-center"><a class="btn btn-primary btn-lg " href="https://en.wikipedia.org/wiki/Pomodoro_Technique" role="button">Learn more</a></p>
+	 		</div>
 		</div>
 
 	
 		<div class = "row content-cell" >
-			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6">
-				<div class="panel panel-danger">
-				  <!--
-				  <div class = "panel-heading">
-				    <h1 id = "motivation-title" class = "text-center"> Motivation </h1>
-				  </div>
-				  -->
-				  <div class="panel-body">
-				  	<img id = "motivation-img" class="img-responsive" src="" alt = "">
-				  </div>
-				</div>	
+			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
+				<div class = "module">
+					<img id = "motivation-img" class="img-rounded img-responsive" src="" alt = "">
+				</div>
 			</div>
 			
-			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6" id="clock-and-buttons" >
-			<p class="lead text-center"> Complete the clock module and make it look sexy </p>
-					<h1 id="clock" class ="text-center"></h1>
-				<div class="text-center">
-					<button type="button" class="btn btn-success enlarge-button" id="start">
-						<span class="glyphicon glyphicon-play "> </span>
-		    		</button>
-				    <button type="button" class="btn btn-warning enlarge-button" id="pause">
-				     	<span class="glyphicon glyphicon-pause"> </span>
-				    </button>
-				    <button type="button" class="btn btn-danger enlarge-button" id="stop">
-				     	<span class="glyphicon glyphicon-stop"> </span>
-				    </button>
+			
+			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6 " >
+				<div class = "module">
+					<p class="lead text-center"> Complete the clock module and make it look sexy </p>
+						<h1 id="clock" class ="text-center"></h1>
+					<div class="text-center">
+						<button type="button" class="btn btn-success enlarge-button" id="start">
+							<span class="glyphicon glyphicon-play "> </span>
+			    		</button>
+					    <button type="button" class="btn btn-warning enlarge-button" id="pause">
+					     	<span class="glyphicon glyphicon-pause"> </span>
+					    </button>
+					    <button type="button" class="btn btn-danger enlarge-button" id="stop">
+					     	<span class="glyphicon glyphicon-stop"> </span>
+					    </button>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class = "row content-cell" style="background-color: #ccffcc;">
-			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6" style="background-color: green;""> 
+
+		<div class = "row content-cell" >
+			
+			<!--
+			<div class = "col-xs-12 col-sm-12s col-md-12 col-lg-12"> 
+				<div class = "module">
 				<h1> Pomodoro Counter </h1>
+				</div>
 			</div>
-			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6 " style="background-color: red;">
-				<h1> Task List </h1>
+			-->
+			<div class = "col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+				<div class= "module">
+					<h1> Task List </h1>
+				</div>
 			</div>
 		</div>
 	</body>

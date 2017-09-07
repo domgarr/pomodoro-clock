@@ -1,36 +1,55 @@
 
  body, html, .container {
-         height: 100%;
+        height: 100%;
     	font-family: 'Antic', sans-serif;
+    	background-color: #FFFAF9;
 
     }
 
 .content-cell  {
 	height: 40%;
 	display: block;
+
+	
 }
 
 #header {
 	height: 20%;
 	display: block;
+	background-color: #DA645B;
+	border-radius: 15px 50px;
+	margin-top:10px;
+	margin-bottom: 10px;
+	font-family: 'Poller One', cursive;
 }
 
 
 #clock {
 	 font-family: 'Poller One', cursive;
 	 margin-top: 50px;
-	 margin-bottom:50px;
-	
+	 margin-bottom: 50px;
+	background-color: #79B363;
+	border-radius: 25px;
 	font-weight: bold;
+	
 }
 
-#clock-and-buttons{
-	margin-top: 10%;
+.module{
+	height: 350px;
+	background-color: #FFE0DD;
+	border-radius: 25px;
+	padding: 5px;
+}
 
+#motivation-img{
+	padding: 10px;
 }
 
 .enlarge-button {
 	width: 100px;
+}
+.pad-text-left {
+	padding-left: 20px;
 }
 
 @media (min-width: 750px){
@@ -44,7 +63,3 @@
 		font-size: 6em;
 	}
 
-img {
-	padding: 20px;
-
-}
