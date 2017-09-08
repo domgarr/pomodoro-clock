@@ -1,4 +1,5 @@
 //Can't export objects while wrapped in JQuery ready function.
+// Comment the JQuery ready function to run test.
 $(document).ready(function(){
 
 //Constructor for the Timer.
@@ -10,7 +11,7 @@ function Timer(countDownLength, $clock, $play, $pause, $stop){
 	var _$play = $($play);
 	var _$pause = $($pause);
 	var _$stop = $($stop);
-
+	
 //Revealing Module Pattern
 //A self-calling anonymous function.
 //All methods and variables of innerTime are private except for those returned.
@@ -35,6 +36,7 @@ var innerTimer = (function(){
 			intervalID = setInterval(countDown,MS);
 			intervalCounter++;
 		}
+	
 	}
 
 	function countDown(){
@@ -100,6 +102,10 @@ var innerTimer = (function(){
 		return intervalCounter;
 	}
 
+	function notify(){
+
+	}
+
 	render();
 
 	return {
@@ -132,10 +138,23 @@ var innerTimer = (function(){
 	this.getIntervalCounter = function(){
 		return innerTimer.getIntervalCounter();
 	}
+
+	_$play.on("click", function(){
+		console.log(this);
+		this.notify();
+	}.bind(this));
+
+	
 	
 }
+	Timer.prototype = new Subject();
+	var timer = new Timer(25, "#clock", "#start", "#pause", "#stop");
+	
+	//console.log(timer);
+	//console.log(timer);
+	console.log(task);
+	timer.addObserver(task);
 
-var timer = new Timer(25, "#clock", "#start", "#pause", "#stop");
 });
 
 //Uncomment below to test. Need to automate this somehow.

@@ -75,8 +75,10 @@ $(document).ready(function(){
 	};
 
 	motivation.init();
-
 	//module.exports = motivation;
 })();
+
+	
+
 });
 		
