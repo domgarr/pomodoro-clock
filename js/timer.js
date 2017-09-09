@@ -2,9 +2,10 @@ var TESTING = false;
 
 
 //Constructor for the Timer.
-function Timer(countDownLength, $clock, $play, $pause, $stop, $taskText){
+function Timer(countDownLength,breakLength, $clock, $play, $pause, $stop, $taskText){
 	//Expected to be in minutes.
 	var _countDownLength = countDownLength;
+	var _breakLength = breakLength;
 	//Cache DOM
 	var _$clock = $($clock);
 	var _$play = $($play);
@@ -23,6 +24,9 @@ var innerTimer = (function(){
 	const HOUR_IN_MS = MINUTE_IN_MS * 60;
 
 	var countDownLengthMS = countDownLength * MINUTE_IN_MS;
+
+	var pomodoroCount = 0;
+	var isBreakTime = false;
 	
 	var intervalID = null;
 	var intervalCounter = 0;
@@ -34,24 +38,39 @@ var innerTimer = (function(){
 	//bind events
 	_$play.on("click", start);
 	_$pause.on("click", pause);
-	_$stop.on("click", stop);
+	_$stop.on("click", reset);
 
 	function start(){
 		if(intervalID == null && countDownLengthMS > 0){
 			intervalID = setInterval(countDown,MS);
 			intervalCounter++;
 		}
-	
 	}
 
 	function countDown(){
 		countDownLengthMS -= MS;
 		if(countDownLengthMS <= 0){
-			sound.play();
-			this.setTimeout(function(){
-				sound.stop();
-			},2750)
+			if(!isBreakTime){
+				isBreakTime = true;
+				_$clock.attr("style", "background-color: #801515" );
+				_$clock.addClass('animated flash');
+				sound.play();
+				pause();
+				this.setTimeout(function(){
+					sound.stop();
+					initBreak();
+				},2750)
+			}else{
+				isBreakTime = false;
+			
+				_$taskText.text("Back to work!");
+				animateBounceInDown(_$taskText);
+			
+				reset();
+			}
+
 			pause();
+
 		}
 		render();
 	}
@@ -63,9 +82,10 @@ var innerTimer = (function(){
 		intervalID = null;
 	}
 
-	function stop(){
+	function reset(){
 		pause();
 		resetTime();
+		_$clock.attr("style", "background-color: #79B363" );
 		render();
 	}
 
@@ -114,6 +134,21 @@ var innerTimer = (function(){
 		return intervalCounter;
 	}
 
+	function initBreak(){
+		setLength(_breakLength);
+		_$clock.attr("style", "background-color: #6B949E" );
+		_$taskText.text("Take a break!");
+		animateBounceInDown(_$taskText);
+		start();
+	}
+
+	function animateBounceInDown($name){
+		$name.addClass('animated bounceInDown');
+		this.setTimeout(function(){
+			$name.removeClass('animated bounceInDown');
+		}, 1000);
+	}
+
 
 
 	render();
@@ -160,7 +195,7 @@ var innerTimer = (function(){
 if(!TESTING){
 	$(document).ready(function(){
 		Timer.prototype = new Subject();
-		var timer = new Timer(1/10, "#clock", "#start", "#pause", "#stop", "#task-text");
+		var timer = new Timer(25, 5, "#clock", "#start", "#pause", "#stop", "#task-text");
 
 		timer.addObserver(task);
 	});

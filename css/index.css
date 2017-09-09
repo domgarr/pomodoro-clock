@@ -24,15 +24,31 @@
 }
 
 
+
+#task-text {
+	padding-top: 20px;
+	height: 100px;
+}
+
+
+
 #clock {
-	 font-family: 'Poller One', cursive;
-	 margin-top: 50px;
-	 margin-bottom: 50px;
+	font-family: 'Poller One', cursive;
+	margin-top: 10px;
+	margin-bottom: 50px;
 	background-color: #79B363;
 	border-radius: 25px;
 	font-weight: bold;
-	
+
+	-webkit-animation-duration: 3s;	
+
 }
+
+#clock-buttons {
+
+}
+
+
 
 .module{
 	height: 350px;
