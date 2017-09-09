@@ -11,6 +11,7 @@ global.$ = require("jquery")(dom.window);
 global.document = dom.window.document;
 
 var timer = require("../js/timer");
+var subject = require("../js/subject");
 //Cache DOM
 var $clockText = $("#clock");
 

@@ -1,9 +1,8 @@
-//Can't export objects while wrapped in JQuery ready function.
-// Comment the JQuery ready function to run test.
-$(document).ready(function(){
+var TESTING = false;
+
 
 //Constructor for the Timer.
-function Timer(countDownLength, $clock, $play, $pause, $stop){
+function Timer(countDownLength, $clock, $play, $pause, $stop, $taskText){
 	//Expected to be in minutes.
 	var _countDownLength = countDownLength;
 	//Cache DOM
@@ -11,6 +10,8 @@ function Timer(countDownLength, $clock, $play, $pause, $stop){
 	var _$play = $($play);
 	var _$pause = $($pause);
 	var _$stop = $($stop);
+
+	var _$taskText = $($taskText);
 	
 //Revealing Module Pattern
 //A self-calling anonymous function.
@@ -102,9 +103,7 @@ var innerTimer = (function(){
 		return intervalCounter;
 	}
 
-	function notify(){
 
-	}
 
 	render();
 
@@ -140,24 +139,30 @@ var innerTimer = (function(){
 	}
 
 	_$play.on("click", function(){
-		console.log(this);
-		this.notify();
-	}.bind(this));
-
-	
-	
+		console.log(_$taskText.text() +" CHECKK");
+		this.notify(_$taskText);
+	}.bind(this));	
 }
-	Timer.prototype = new Subject();
-	var timer = new Timer(25, "#clock", "#start", "#pause", "#stop");
 	
-	//console.log(timer);
-	//console.log(timer);
-	console.log(task);
-	timer.addObserver(task);
+//Can't export objects while wrapped in JQuery ready function.
+// Comment the JQuery ready function to run test.
+if(!TESTING){
+	$(document).ready(function(){
+		Timer.prototype = new Subject();
+		var timer = new Timer(25, "#clock", "#start", "#pause", "#stop", "#task-text");
 
-});
+		timer.addObserver(task);
+	});
+}else{
+	//Uncomment below to test. Need to automate this somehow.
+		Timer.prototype = new Subject();
+		var timer = new Timer(25, "#clock", "#start", "#pause", "#stop");
+		timer.addObserver(task);
 
-//Uncomment below to test. Need to automate this somehow.
-//module.exports = timer;
+		module.exports = timer;
+}
+
+
+
 	
 

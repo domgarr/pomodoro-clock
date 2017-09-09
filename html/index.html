@@ -16,11 +16,17 @@
 
 	<link rel = "stylesheet" href="../css/index.css"> 
 
+	<script type="text/javascript">
+		var TESTING = true;
+	</script>
+
 	<script src = "../js/observerList.js"></script>
 	<script src = "../js/subject.js"></script>
 	<script src = "../js/task.js"></script>
 	<script src = "../js/timer.js"></script>
 	<script src = "../js/motivation.js"> </script>
+
+	
 
 
 </head>
@@ -47,7 +53,7 @@
 			
 			<div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6 " >
 				<div class = "module">
-					<p class="lead text-center"> Complete the clock module and make it look sexy </p>
+					<p id="task-text" class="lead text-center"> Complete the clock module and make it look sexy </p>
 						<h1 id="clock" class ="text-center"></h1>
 					<div class="text-center">
 						<button type="button" class="btn btn-success enlarge-button" id="start">
