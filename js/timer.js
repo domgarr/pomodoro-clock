@@ -33,7 +33,7 @@ var innerTimer = (function(){
 	_$stop.on("click", stop);
 
 	function start(){
-		if(intervalID == null){
+		if(intervalID == null && countDownLengthMS > 0){
 			intervalID = setInterval(countDown,MS);
 			intervalCounter++;
 		}
@@ -42,6 +42,9 @@ var innerTimer = (function(){
 
 	function countDown(){
 		countDownLengthMS -= MS;
+		if(countDownLengthMS <= 0){
+			pause();
+		}
 		render();
 	}
 
@@ -149,7 +152,7 @@ var innerTimer = (function(){
 if(!TESTING){
 	$(document).ready(function(){
 		Timer.prototype = new Subject();
-		var timer = new Timer(25, "#clock", "#start", "#pause", "#stop", "#task-text");
+		var timer = new Timer(1/10, "#clock", "#start", "#pause", "#stop", "#task-text");
 
 		timer.addObserver(task);
 	});
