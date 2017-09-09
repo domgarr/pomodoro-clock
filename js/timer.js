@@ -27,6 +27,10 @@ var innerTimer = (function(){
 	var intervalID = null;
 	var intervalCounter = 0;
 
+	var sound = new Howl({
+		src: ["../sounds/analog-watch-alarm.wav"]
+	});
+
 	//bind events
 	_$play.on("click", start);
 	_$pause.on("click", pause);
@@ -43,6 +47,10 @@ var innerTimer = (function(){
 	function countDown(){
 		countDownLengthMS -= MS;
 		if(countDownLengthMS <= 0){
+			sound.play();
+			this.setTimeout(function(){
+				sound.stop();
+			},2750)
 			pause();
 		}
 		render();
