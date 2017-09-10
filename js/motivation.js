@@ -5,9 +5,12 @@ $(document).ready(function(){
 	var motivation = {
 		path : "https://www.reddit.com/r/GetMotivated/hot.json?limit=", //Returns 3
 		testingPath : "https://www.reddit.com/r/GETMotivated/by_id/t3_6vxhun.json",
-		posts : {},
+		after : "",
+		threadIndex : 0,
+		threads : {},
+		currentType : null,
 		init : function(){
-			this.gatherPosts(1, function() {});
+			this.gatherThreads(20, function() {});
 			this.cacheDom();
 			
 			
@@ -15,6 +18,7 @@ $(document).ready(function(){
 		cacheDom: function(){
 			this.$motivationImg = $("#motivation-img");
 			this.$motivationTitle = $("#motivation-title");
+			this.$motivationText = $("motivation-text");
 		},
 		bindEvents : function(){
 
@@ -28,33 +32,34 @@ $(document).ready(function(){
 
 			this.$motivationTitle.text(this.title);
 		},
-		gatherPosts : function(quantity, callback){
-			
-			$.getJSON(this.testingPath, function(jsonData,status,xhr){
+		//Gets quantity + 2 threads from reddit.com/r/GetMotivated
+		gatherThreads : function(quantity, callback){
+			$.getJSON(this.path + quantity + this.after, function(jsonData,status,xhr){
 				if(status == "success"){
-					this.posts = jsonData["data"]["children"];
-					this.count = this.posts.length;
-
-					this.setType(this.posts[0]["data"]);
-					this.setTitle(this.posts[0]["data"]);
-					this.setImageUrl(this.posts[0]["data"]);
-					this.render();
+					this.threads = jsonData["data"]["children"];
+					this.initThread();
+					this.findNextThread();
 					callback("success");
 				}else if(status == "error"){
 					callback("error");
 				}
 			}.bind(this));
 		},
-		setType : function(childData){
+		getType : function(childData){
 			//Get title, needs [ ] parsed out.
 			this.title = childData["title"]; 
 			//Parse Title for square brackets since the type is in the square brackets.
 			var re = /\[[a-zA-z]+\]/;
 			//Match returns an array.
-			var result = this.title.match(re); 
+			var result = this.title.match(re);
+				//If [Image] or [Text] is not found within the title.
+				if(result == null){
+					return null;
+				} 
+
 			//For consitancy set all characters to lowercase.
 			result = result[0].toLowerCase();
-			this.type = result;
+			return result;
 		},
 		setTitle : function(childData){
 			//Since [Image] or [Video] is lowecases for consistancy
@@ -69,8 +74,35 @@ $(document).ready(function(){
 		setImageUrl : function(childData){
 			this.imageUrl = childData["url"];
 		},
-		getCount : function(){
-			return this.count;
+		initThread : function(index){
+			this.findThread();
+			
+			if(this.currentType == "[image]"){
+				this.setImageUrl(this.threads[this.threadIndex]["data"]);
+			}
+
+			this.render();
+		},
+		findThread : function(){
+		//We are looking for the first Image or Text thread type.
+			for(var i = this.threadIndex ; i < this.threads.length ;  i++){
+				var type = this.getType(this.threads[i]["data"]);
+				if(type == "[image]"){
+					this.currentType = type;
+					break;
+				}
+			}
+			this.threadIndex = i;
+			console.log(type);
+			if(type != "[image]"){
+				this.after = "&" + threads[i]["after"];
+				console.log(this.after);
+				this.gatherThreads(20, function() {});
+			}
+		},
+		findNextThread : function(){
+			this.threadIndex++;
+			this.initThread();
 		}
 	};
 
